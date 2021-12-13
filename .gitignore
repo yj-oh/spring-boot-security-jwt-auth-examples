@@ -1,0 +1,33 @@
+### Gradle ###
+.gradle
+build/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+
+# Log file
+*.log
+
+# Package Files #
+*.jar
+*.war
+*.tar.gz
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+
+### macOS ###
+.DS_Store
+.AppleDouble
+.LSOverride
+
+### Windows ###
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.lnk
