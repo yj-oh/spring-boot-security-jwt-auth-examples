@@ -1,12 +1,12 @@
-package com.yjworld.boilerplate.gradle.springboot;
+package com.yjworld.jwt;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringbootGradleBoilerplateApplication {
+public class SpringSecurityJwtApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringbootGradleBoilerplateApplication.class, args);
+        SpringApplication.run(SpringSecurityJwtApplication.class, args);
     }
 }

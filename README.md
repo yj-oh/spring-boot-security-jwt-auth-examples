@@ -1,1 +1,1 @@
-# springboot-gradle-boilerplate
+# spring-boot-security-jwt-auth-examples
