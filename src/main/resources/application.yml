@@ -12,6 +12,10 @@ spring:
   profiles:
     default: local
 
+jwt:
+  secret-key: yjworld
+  expiration-time: 1800000  # 30분
+
 logging:
   level:
     org.springframework: DEBUG
