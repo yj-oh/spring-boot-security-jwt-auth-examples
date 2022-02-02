@@ -31,4 +31,15 @@ public class AuthController {
 		authService.register(request.getEmail(), request.getPassword(), request.getUsername());
 		return ResponseEntity.ok().build();
 	}
+
+	@ApiOperation(value = "로그인")
+	@ApiResponses({
+			@ApiResponse(code = 200, message = "성공"),
+			@ApiResponse(code = 400, message = "비밀번호가 일치하지 않음"),
+			@ApiResponse(code = 404, message = "사용자 정보를 찾을 수 없음")
+	})
+	@PostMapping("/login")
+	public JwtResponseDto login(@RequestBody LoginRequestDto request) {
+		return authService.login(request);
+	}
 }
