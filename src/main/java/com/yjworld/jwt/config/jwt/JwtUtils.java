@@ -16,6 +16,10 @@ import java.util.Map;
 @Component
 public class JwtUtils {
 
+	public static final String CLAIMS_USERNAME = "username";
+	public static final String CLAIMS_ROLES = "roles";
+	public static final String TOKEN_TYPE = "Bearer";
+
 	@Value("${jwt.secret-key}")
 	private String secretKey;
 
@@ -29,8 +33,8 @@ public class JwtUtils {
 
 	public String generateToken(User user) {
 		Map<String, Object> data = new HashMap<>();
-		data.put("roles", user.getRole());
-		data.put("username", user.getUsername());
+		data.put(CLAIMS_USERNAME, user.getUsername());
+		data.put(CLAIMS_ROLES, user.getRole());
 
 		return generateToken(data);
 	}
@@ -69,7 +73,7 @@ public class JwtUtils {
 	}
 
 	public String parseToken(String token) {
-		return token.replace("Bearer", "").trim();
+		return token.replace(TOKEN_TYPE, "").trim();
 	}
 
 	public Claims getClaims(String token) {
