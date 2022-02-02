@@ -6,8 +6,13 @@ import com.yjworld.jwt.domain.user.User;
 import com.yjworld.jwt.domain.user.UserRepository;
 import com.yjworld.jwt.domain.user.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 @RequiredArgsConstructor
@@ -42,5 +47,20 @@ public class AuthService {
 				.username(user.getUsername())
 				.token(token)
 				.build();
+	}
+
+	public User getCurrentUser() {
+		UserDetails userDetails = getCurrentUserDetails();
+		return userRepository.findUserByEmailAndDeletedAtIsNull(userDetails.getUsername())
+				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+	}
+
+	private UserDetails getCurrentUserDetails() {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+		if (authentication == null) {
+			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
+		}
+		return (UserDetails) authentication.getPrincipal();
 	}
 }
