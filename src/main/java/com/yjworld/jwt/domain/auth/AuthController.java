@@ -1,5 +1,6 @@
 package com.yjworld.jwt.domain.auth;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
+@Api(tags = "01. 계정")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/auth")
